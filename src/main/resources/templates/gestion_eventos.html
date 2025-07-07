@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestionar Eventos</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Montserrat:wght@400;700&display=swap" rel="stylesheet"> 
+</head>
+<body>
+    <div class="container">
+        <h2>Gestionar Eventos</h2>
+
+        <table class="tabla-gestion">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Fecha y Hora</th>
+                    <th>Lugar</th>
+                    <th>Artista</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="evento : ${eventos}">
+                    <td th:text="${evento.id}"></td>
+                    <td th:text="${evento.nombre}"></td>
+                    <td th:text="${#temporals.format(evento.fechaHora, 'dd/MM/yyyy HH:mm')}"></td>
+                    <td th:text="${evento.lugar}"></td>
+                    <td>
+                        <span th:if="${evento.artista != null}" th:text="${evento.artista.nombre}"></span>
+                        <span th:unless="${evento.artista != null}">Sin artista asignado</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="button-container">
+            <button th:onclick="|window.location.href='@{/admin}'|" class="boton-volver">Volver</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestionar Proyectos</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Montserrat:wght@400;700&display=swap" rel="stylesheet"> 
+</head>
+<body>
+    <div class="container">
+        <h2>Proyectos Musicales</h2>
+
+        <table class="tabla-gestion">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Fecha Inicio</th>
+                    <th>Fecha Fin</th>
+                    <th>Artista</th>
+                    <th>Productor</th>
+                    <th>Fecha Lanzamiento</th>
+                    <th>Género</th>
+                    <th>Presupuesto</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="proyecto : ${proyectos}">
+                    <td th:text="${proyecto.id}"></td>
+                    <td th:text="${proyecto.nombre}"></td>
+                    <td th:text="${proyecto.descripcion}"></td>
+                    <td th:text="${proyecto.fechaInicio}"></td>
+                    <td th:text="${proyecto.fechaFin}"></td>
+                    <td th:text="${proyecto.artista.nombre}"></td>
+                    <td th:text="${proyecto.productor.nombre}"></td>
+                    <td th:text="${proyecto.fechaLanzamiento}"></td>
+                    <td th:text="${proyecto.genero}"></td>
+                    <td th:text="${#numbers.formatCurrency(proyecto.presupuesto)}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="button-container">
+            <button th:onclick="|window.location.href='@{/admin}'|" class="boton-volver">Volver</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Mis Maquetas</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+	<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Montserrat:wght@400;700&display=swap" rel="stylesheet"> 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> //Script para control del desplegable
+    <style>
+        .notification {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px;
+            background-color: #4caf50; /* Green */
+            color: white;
+        }
+        .notification.error {
+            background-color: #f44336; /* Red */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Mis Maquetas</h2>
+
+        <div th:if="${mensaje}" class="notification" id="notification">
+            <span th:text="${mensaje}"></span>
+        </div>
+        <div th:if="${error}" class="notification error" id="notification">
+            <span th:text="${error}"></span>
+        </div>
+
+        <div class="button-container">
+            <a th:href="@{/maquetas/nuevo}" class="boton-nuevo">Añadir Maqueta</a>
+            <a th:href="@{/maquetas/compartidas}" class="boton-nuevo">Ver Maquetas Compartidas</a>
+        </div>
+
+        <div th:each="maqueta : ${maquetas}">
+            <details>
+                <summary>
+                    <span th:text="${maqueta.nombre}"></span> 
+                    <span th:if="${maqueta instanceof T(com.example.SyncBeat.Entidades.MaquetaCompartida)}">
+                        (Compartida por: <span th:text="${maqueta.compartidoPor.nombre}"></span>)
+                    </span>
+                </summary>
+                <audio controls>
+                    <source th:src="@{/maquetas/{id}/descargar(id=${maqueta.id})}" type="audio/mpeg">
+                    Tu navegador no soporta el elemento de audio.
+                </audio>
+                <div class="button-container">
+                    <a th:href="@{/maquetas/{id}/descargar(id=${maqueta.id})}" class="boton-descargar">Descargar</a>
+                    <form th:action="@{/maquetas/{id}/eliminar(id=${maqueta.id})}" method="post">
+                        <input type="hidden" name="_method" value="delete"/>
+                        <button type="submit" class="boton-eliminar" onclick="return confirm('¿Estás seguro?')">Eliminar</button>
+                    </form>
+                    <form th:action="@{/maquetas/{id}/compartir(id=${maqueta.id})}" method="post">
+                        <select name="usuarioId">
+                            <option value="">Selecciona un usuario</option>
+                            <option th:each="usuario : ${usuarios}" th:value="${usuario.id}" th:text="${usuario.nombre}"></option>
+                        </select>
+                        <button type="submit" class="boton-compartir">Compartir</button>
+                    </form>
+                    <a th:href="@{/maquetas/{id}/comparticiones(id=${maqueta.id})}" class="boton-ver-comparticiones">Ver Comparticiones</a>
+                </div>
+            </details>
+        </div>
+		<div class="button-container">
+				<br>
+				<button th:onclick="|window.location.href='@{/productor}'|">Volver al perfil</button>
+		    </div>
+    </div>
+
+    <script> // Script para lanzar mensajes de confirmación o error
+        $(document).ready(function() {
+            if ($("#notification").text().trim().length > 0) {
+                $("#notification").fadeIn().delay(3000).fadeOut();
+            }
+        });
+    </script>
+</body>
+</html>

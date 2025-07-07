@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Vista Administrador</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div th:fragment="content">
+		<h1>SyncBeat</h1>
+		<div class="button-container">
+		<a th:href="@{/logout}">Cerrar Sesión</a>
+		</div>
+        <h2>Bienvenido, <span th:text="${usuario.nombre}"></span>!</h2>
+        <div class="button-container">
+            <button th:onclick="|window.location.href='@{/admin/artista/listar}'|">Gestión Artistas</button>
+            <button th:onclick="|window.location.href='@{/admin/productor/listar}'|">Gestión Productores</button>
+            <button th:onclick="|window.location.href='@{/admin/administrador/listar}'|">Gestión Administradores</button>
+        </div>
+        <div class="button-container">
+            <button th:onclick="|window.location.href='@{/admin/eventos}'|">Listar Eventos</button>
+            <button th:onclick="|window.location.href='@{/admin/maquetas}'|">Listar Maquetas</button>
+			<button th:onclick="|window.location.href='@{/admin/proyectos}'|">Listar Proyectos</button>
+        </div>
+    </div>
+	
+</body>
+<footer>
+	        <p>&copy; 2024 SyncBeat</p>
+	    </footer>
+</html>

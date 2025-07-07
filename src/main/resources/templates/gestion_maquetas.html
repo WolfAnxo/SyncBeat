@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestionar Maquetas</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Montserrat:wght@400;700&display=swap" rel="stylesheet"> 
+</head>
+<body>
+    <div class="container">  
+        <h2>Gestionar Maquetas</h2> 
+
+        <table class="tabla-gestion">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="maqueta : ${maquetas}">
+                    <td th:text="${maqueta.id}"></td>
+                    <td th:text="${maqueta.nombre}"></td> 
+                </tr>
+            </tbody>
+        </table>
+        <div class="button-container">
+            <button th:onclick="|window.location.href='@{/admin}'|" class="boton-volver">Volver</button> 
+        </div>
+    </div>
+</body>
+</html>

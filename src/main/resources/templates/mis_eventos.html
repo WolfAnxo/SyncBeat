@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Mis Eventos</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h2>Mis Eventos</h2>
+
+        <table class="tabla-gestion">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+					<th>Descripción</th>
+                    <th>Fecha y Hora</th>
+                    <th>Lugar</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="evento : ${eventos}">
+                    <td th:text="${evento.id}"></td>
+                    <td th:text="${evento.nombre}"></td>
+					<td th:text="${evento.descripcion}"></td>
+                    <td th:text="${#temporals.format(evento.fechaHora, 'dd/MM/yyyy HH:mm')}"></td>
+                    <td th:text="${evento.lugar}"></td>
+                    <td>
+						<form th:action="@{/eventos/{id}/editar(id=${evento.id})}" method="get">
+						                            <input type="hidden" name="_method" value="get" />
+						                            <button type="submit" class="boton-editar">Editar</button>
+						                        </form> <br>
+                        <form th:action="@{/eventos/{id}/eliminar(id=${evento.id})}" method="post" style="display:inline;">
+							<button type="submit" class="boton-eliminar" onclick="return confirm('¿Estás seguro de que quieres eliminar este evento?')">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="button-container">
+            <button th:onclick="|window.location.href='@{/perfil-artista}'|">Volver al perfil</button>
+            <button th:onclick="|window.location.href='@{/eventos/nuevo}'|">Nuevo Evento</button>
+        </div>
+    </div>
+</body>
+</html>

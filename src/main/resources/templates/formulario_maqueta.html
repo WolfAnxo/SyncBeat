@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Formulario Maqueta</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+	<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Montserrat:wght@400;700&display=swap" rel="stylesheet"> 
+</head>
+<body>
+    <div class="container">
+        <h2>Crear/Editar Maqueta</h2>
+
+        <form th:action="@{${maqueta.id != null} ? '/maquetas/' + ${maqueta.id} + '/editar' : '/maquetas/nuevo'}" 
+              method="post" enctype="multipart/form-data" th:object="${maqueta}">
+            <input type="hidden" th:field="*{id}" /> 
+
+            <div>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" th:field="*{nombre}" required />
+            </div>
+
+            <div th:if="${rol == 'ARTISTA'}">
+                <label for="proyectoMusical">Proyecto Musical (opcional):</label>
+                <select id="proyectoMusical" th:field="*{proyectoMusical}">
+                    <option value="">Ninguno</option>
+                    <option th:each="proyecto : ${proyectosMusicales}"
+                            th:value="${proyecto.id}"
+                            th:text="${proyecto.nombre}">
+                    </option>
+                </select>
+            </div>
+
+            <div>
+                <label for="archivo">Archivo de audio:</label>
+                <input type="file" id="archivo" th:field="*{archivo}" name="archivo" accept="audio/*" required />
+            </div>
+
+            <button type="submit">Guardar Maqueta</button>
+        </form>
+
+        <div class="button-container">
+            <button th:onclick="|window.location.href='@{/maquetas}'|">Volver a Mis Maquetas</button>
+        </div>
+    </div>
+</body>
+</html>

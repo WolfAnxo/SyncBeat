@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${evento.id != null} ? 'Editar Evento' : 'Nuevo Evento'"></title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h2 th:text="${evento.id != null} ? 'Editar Evento' : 'Nuevo Evento'"></h2>
+        <form th:action="@{${evento.id != null} ? '/eventos/' + ${evento.id} + '/guardar' : '/eventos/guardar'}" method="post" th:object="${evento}">
+            <div>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" th:field="*{nombre}" required>
+            </div>
+            <div>
+                <label for="fechaHora">Fecha y Hora:</label>
+                <input type="datetime-local" id="fechaHora" th:field="*{fechaHora}" required>
+            </div>
+            <div>
+                <label for="lugar">Lugar:</label>
+                <input type="text" id="lugar" th:field="*{lugar}" required>
+            </div>
+            <div>
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" th:field="*{descripcion}" required></textarea>
+            </div>
+            <button type="submit">Guardar</button>
+        </form>
+    </div>
+</body>
+</html>

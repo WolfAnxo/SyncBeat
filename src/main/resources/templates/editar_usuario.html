@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Editar Usuario</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Montserrat:wght@400;700&display=swap" rel="stylesheet"> 
+    <style>
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+
+        .input-error {
+            border-color: red;
+        }
+
+        .toggle-password {
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        function verContraseña() {
+            var cuadrocontra = document.getElementById("contrasena");
+            var icono = document.getElementById("togglePassword");
+            if (cuadrocontra.type === "password") {
+                cuadrocontra.type = "text";
+                icono.textContent = "Ocultar";
+            } else {
+                cuadrocontra.type = "password";
+                icono.textContent = "Ver";
+            }
+        }
+
+
+        function validacion() {
+            var cuadrocontra = document.getElementById("contrasena");
+            var contraseña = cuadrocontra.value;
+            var error = document.getElementById("passwordError");
+            var regla = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+            if (!regla.test(contraseña)) {
+                cuadrocontra.classList.add("input-error");
+                error.textContent = "La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula, un número y un carácter especial.";
+                return false;
+            } else {
+                cuadrocontra.classList.remove("input-error");
+                error.textContent = "";
+                return true;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Editar Usuario</h2>
+        <form th:action="@{/usuarios/guardar}" method="post" th:object="${usuario}" onsubmit="return validacion()"> 
+            <input type="hidden" th:field="*{id}">
+            <div>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" th:field="*{nombre}" required>
+            </div>
+            <div>
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" th:field="*{email}" required>
+            </div>
+            <div>
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" id="contrasena" th:field="*{contrasena}" required>
+                <span id="togglePassword" class="toggle-password" onclick="verContraseña()">👁️</span>
+                <div id="passwordError" class="error"></div>
+            </div>
+            <div>
+                <label for="rol">Rol:</label>
+                <select id="rol" th:field="*{rol}">
+                    <option th:each="rolOpcion : ${roles}" th:value="${rolOpcion}" th:text="${rolOpcion}" th:selected="${rolOpcion == usuario.rol}"></option>
+                </select>
+            </div>
+            <button type="submit">Guardar Cambios</button>
+        </form>
+    </div>
+</body>
+</html>

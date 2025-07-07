@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestionar Artistas</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Montserrat:wght@400;700&display=swap" rel="stylesheet"> 
+</head>
+<body>
+    <div class="container">
+        <h2>Gestionar Artistas</h2>
+
+        <table class="tabla-gestion">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Género</th>
+                <th>Nacionalidad</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="artista : ${artistas}">
+                <td th:text="${artista.id}"></td>
+                <td th:text="${artista.nombre}"></td>
+                <td th:text="${artista.genero}"></td>
+                <td th:text="${artista.nacionalidad}"></td>
+                <td th:text="${#temporals.format(artista.fechaNacimiento, 'dd/MM/yyyy')}"></td>
+                <td>
+                    <a th:href="@{/admin/artistas/{id}/editar(id=${artista.id})}" class="boton-editar">Editar</a> |
+                    <a th:href="@{/admin/artistas/{id}/eliminar(id=${artista.id})}" class="boton-eliminar" onclick="return confirm('¿Estás seguro?')">Eliminar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <button th:onclick="|window.location.href='@{/admin/artistas/nuevo}'|" class="boton-nuevo">Nuevo Artista</button>
+    </div>
+</body>
+</html>

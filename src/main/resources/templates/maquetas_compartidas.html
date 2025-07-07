@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Maquetas Compartidas</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+	<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Montserrat:wght@400;700&display=swap" rel="stylesheet"> 
+</head>
+<body>
+    <div class="container">
+        <h2>Maquetas Compartidas</h2>
+        <div th:each="maqueta : ${maquetasCompartidas}">
+            <details>
+                <summary>
+                    <span th:text="${maqueta.nombre}"></span>
+                    <span>(Compartida por: <span th:text="${maqueta.artista.nombre}"></span>)</span>
+                </summary>
+                <audio controls>
+                    <source th:src="@{/maquetas/{id}/descargar(id=${maqueta.id})}" type="audio/mpeg">
+                    Tu navegador no soporta el elemento de audio.
+                </audio>
+                <a th:href="@{/maquetas/{id}/descargar(id=${maqueta.id})}" class="boton-descargar">Descargar</a>
+            </details>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestionar Usuarios</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Montserrat:wght@400;700&display=swap" rel="stylesheet"> 
+</head>
+<body>
+    <div class="container">
+        <h2>Gestionar <span th:text="${rol}"></span></h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Correo Electrónico</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="usuario : ${usuarios}">
+                    <td th:text="${usuario.id}"></td>
+                    <td th:text="${usuario.nombre}"></td>
+                    <td th:text="${usuario.email}"></td>
+                    <td>
+                        <form th:action="@{/usuarios/{id}/editar(id=${usuario.id})}" method="get">
+                            <input type="hidden" name="_method" value="get" />
+                            <button type="submit" class="boton-editar">Editar</button>
+                        </form> <br>
+                        <form th:action="@{/usuarios/{id}/eliminar(id=${usuario.id})}" method="post">
+                            <input type="hidden" name="_method" value="delete" />
+                            <button type="submit" class="boton-eliminar" onclick="return confirm('¿Estás seguro?')">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="button-container"> 
+            <button th:onclick="|window.location.href='@{/admin/usuarios/nuevo(rol=${rol})}'|" class="boton-nuevo">Nuevo <span th:text="${rol}"></span></button>
+            <button th:onclick="|window.location.href='@{/admin}'|" class="boton-volver">Volver</button> 
+        </div>
+    </div>
+</body>
+</html>

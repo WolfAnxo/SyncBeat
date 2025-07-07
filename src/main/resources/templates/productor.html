@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Vista Productor</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div th:fragment="content">
+		<h1>SyncBeat</h1>
+		<li><a th:href="@{/logout}">Cerrar Sesión</a></li>
+        <h2>Bienvenido, <span th:text="${usuario.nombre}"></span>!</h2>
+        <div class="button-container">
+            <button th:onclick="|window.location.href='@{/productor/proyectos}'|">Ver mis proyectos</button>
+            <button th:onclick="|window.location.href='@{/maquetas}'|">Ver mis maquetas</button>
+        </div>
+    </div>
+	<footer>
+	        <p>&copy; 2024 SyncBeat</p>
+	    </footer>
+</body>
+</html>
