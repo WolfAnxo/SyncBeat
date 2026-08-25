@@ -1,104 +1,121 @@
 # SyncBeat 🎵
 
-**Proyecto Fin de Ciclo de Anxo Pena Blanco**  
-_Ciclo Superior en Desarrollo de Aplicaciones Multiplataforma_
+**Proyecto Final de Ciclo — Desarrollo de Aplicaciones Multiplataforma (DAM)**
+**Anxo Pena Blanco · 2024**
 
----
+SyncBeat es una aplicación web para la gestión de proyectos dentro del sector musical. La desarrollé como **Proyecto Final del Ciclo Superior de Desarrollo de Aplicaciones Multiplataforma**, que cursé entre 2022 y 2024.
 
-## 🧠 Idea del proyecto
+El proyecto nació de mi interés por unir dos ámbitos que me gustan: **la programación y la música**. La idea era crear un espacio desde el que artistas, productores y pequeñas productoras pudieran organizar diferentes partes de su trabajo sin tener que recurrir a varias herramientas independientes.
 
-SyncBeat es una **aplicación web para el sector musical**, dirigida a productoras grandes y pequeñas, así como a artistas y productores independientes. Su objetivo es cubrir la carencia de software específico para la gestión de proyectos y eventos musicales, centralizando información y comunicación en una única plataforma interactiva y sencilla.
+## 💡 Sobre el proyecto
 
----
+Durante el desarrollo de SyncBeat planteé una aplicación que centralizase la información relacionada con una producción musical.
 
-## 📝 Descripción
+Entre sus principales funcionalidades se encuentran:
 
-SyncBeat es una plataforma innovadora diseñada para **simplificar la gestión y producción musical**. Permite a los usuarios:
+* Gestión de usuarios y roles.
+* Creación y seguimiento de proyectos musicales.
+* Organización de eventos y calendarios.
+* Gestión de presupuestos.
+* Compartición de maquetas entre los miembros de un proyecto.
+* Comunicación y organización del trabajo en equipo.
+* Consulta de información relacionada con los proyectos.
 
-- Crear, planificar y hacer seguimiento de proyectos.
-- Gestionar calendarios y presupuestos.
-- Comunicarse fácilmente con el equipo.
-- Visualizar análisis de rendimiento.
+El objetivo del proyecto no era únicamente desarrollar una aplicación funcional, sino aplicar de forma conjunta buena parte de los conocimientos que había adquirido durante DAM.
 
-Es una **solución integral** que impulsa la creatividad y mejora la organización del trabajo musical.
+## 🛠️ Tecnologías
 
----
+El proyecto fue desarrollado principalmente con:
 
-## ⚙️ Instalación y puesta en marcha
+* **Java**
+* **Spring Boot**
+* **Spring Data JPA / Jakarta Persistence**
+* **MySQL**
+* **Thymeleaf**
+* **HTML**
+* **CSS**
+* **JavaScript**
+* **Maven**
 
-### Requisitos:
-- Java
-- Maven
-- XAMPP (Apache + MySQL)
+Para el entorno local utilicé **XAMPP** para trabajar con MySQL.
 
-### Pasos:
+## 🏗️ Desarrollo
 
-1. Inicia Apache y MySQL desde XAMPP.
-2. Importa la base de datos incluida en el proyecto.
-3. Abre una terminal y navega a la carpeta del proyecto.
-4. Ejecuta los siguientes comandos:
+SyncBeat fue uno de los primeros proyectos en los que tuve que plantear una aplicación de mayor tamaño de principio a fin.
+
+Durante su desarrollo trabajé aspectos como:
+
+* Diseño y modelado de la base de datos.
+* Persistencia de información mediante JPA.
+* Desarrollo de la lógica de la aplicación con Java y Spring Boot.
+* Gestión de usuarios y diferentes tipos de acceso.
+* Relación entre las distintas entidades de la aplicación.
+* Desarrollo de vistas dinámicas mediante Thymeleaf.
+* Formularios y validación de datos.
+* Integración entre backend, base de datos e interfaz web.
+* Organización de un proyecto de mayor tamaño utilizando Maven.
+
+Más allá del resultado final, este proyecto representa una parte importante de mi etapa de aprendizaje como desarrollador.
+
+## ⚙️ Ejecución del proyecto
+
+### Requisitos
+
+Para ejecutar el proyecto en local es necesario disponer de:
+
+* Java
+* Maven
+* MySQL
+
+También puede utilizarse XAMPP para levantar el servidor MySQL.
+
+### Instalación
+
+1. Clona el repositorio:
+
+```bash
+git clone https://github.com/WolfAnxo/SyncBeat.git
+```
+
+2. Accede al directorio:
+
+```bash
+cd SyncBeat
+```
+
+3. Configura la conexión con MySQL según la configuración del proyecto.
+
+4. Compila el proyecto:
 
 ```bash
 mvn clean install
+```
+
+5. Inicia la aplicación:
+
+```bash
 mvn spring-boot:run
 ```
 
-5. Accede a `http://localhost:8080` desde tu navegador.
+6. Una vez iniciada, accede desde el navegador a:
 
----
+```text
+http://localhost:8080
+```
 
-## 💻 Uso
+## 📚 Contexto
 
-La interfaz moderna e intuitiva permite:
+Este repositorio conserva **mi Proyecto Final de Ciclo de DAM de 2024** y forma parte de los proyectos que mantengo en GitHub para mostrar mi evolución como desarrollador.
 
-- Gestión de usuarios y roles.
-- Creación de proyectos musicales.
-- Organización de eventos.
-- Colaboración a través de maquetas compartidas.
+Por ese motivo, el código refleja tanto los conocimientos que tenía en aquel momento como las decisiones que fui tomando mientras aprendía a desarrollar una aplicación de estas características.
 
----
+Si volviera a desarrollar SyncBeat actualmente, hay partes de la arquitectura, organización y código que plantearía de otra manera. He preferido mantener el proyecto cercano a su versión original porque considero que también es una forma de mostrar esa evolución.
 
-## 👨‍💻 Sobre el autor
+## 👨‍💻 Autor
 
-**Anxo Pena Blanco**  
-Estudiante del último curso del ciclo superior de Desarrollo de Aplicaciones Multiplataforma.
+**Anxo Pena Blanco**
 
-Apasionado por la programación y la informática. Soy una persona curiosa, autodidacta y versátil, con conocimientos sólidos en **Java**, bases de datos **SQL**, y en **Python**, que sigo aprendiendo por mi cuenta.
+Desarrollador de software con formación en Desarrollo de Aplicaciones Multiplataforma.
 
-Este proyecto nace de la unión de mis dos pasiones: **la programación y la música**. Al investigar cómo los artistas gestionan sus producciones, descubrí que no existía una herramienta específica para ello. Así nace SyncBeat: una solución pensada desde dentro del sector musical.
-
----
-
-## 📄 Licencia
-
-Licencia aplicada: **SLA (Software License Agreement)**
-
----
-
-## 🧰 Tecnologías utilizadas
-
-- [Java](https://www.java.com/es/)
-- [Spring Boot](https://spring.io/projects/spring-boot)
-- [MySQL](https://www.mysql.com)
-- [XAMPP (Apache + MySQL)](https://www.apachefriends.org/es/index.html)
-- [Thymeleaf (motor de plantillas)](https://www.thymeleaf.org)
-- [Jakarta Persistence (JPA)](https://github.com/jakartaee/persistence)
-- JavaScript:
-  - [jQWidgets Validator](https://www.jqwidgets.com/jquery-validation-plug-in-is-coming-with-jqwidgets-1-8/)
-  - [W3Schools](https://www.w3schools.com)
-  - [MDN Web Docs](https://developer.mozilla.org/es/docs/Web/JavaScript)
-
----
-
-## 📌 Índice del proyecto
-
-1. Anteproyecto  
-   1.1. Idea  
-   1.2. Necesidades  
-2. Análisis  
-3. Planificación  
-4. Diseño  
-5. Implantación  
-   - 5.1. Implementación  
-   - 5.2. Producción  
+SyncBeat fue desarrollado como mi Proyecto Final de Ciclo en 2024.
 
